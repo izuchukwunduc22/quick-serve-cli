@@ -1,0 +1,74 @@
+{
+  "name": "quick-serve",
+  "version": "0.1.0",
+  "description": "Express backend starter CLI with TypeScript, ESM/CommonJS, database & ORM scaffolding, sensible defaults, and documentation.",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "Express",
+    "Typescript",
+    "ESM",
+    "Backend",
+    "CLI",
+    "Npm",
+    "Server",
+    "Javascript",
+    "Node",
+    "Prisma",
+    "Drizzle",
+    "ORM",
+    "ODM",
+    "Database",
+    "Postgresql",
+    "Sql",
+    "Nosql",
+    "Commonjs",
+    "Starter",
+    "Generator",
+    "Scaffolding."
+  ],
+  "homepage": "https://github.com/izuchukwunduc22/quick-serve-cli#readme",
+  "bugs": {
+    "url": "https://github.com/izuchukwunduc22/quick-serve-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izuchukwunduc22/quick-serve-cli.git"
+  },
+  "license": "MIT",
+  "bin": {
+    "quick-serve-cli": "./dist/cli.js"
+  },
+  "author": "Ndu Izuchukwu Christopher",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "vitest",
+    "dev": "tsx src/bin/cli.ts",
+    "build": "tsup",
+    "lint": "eslint src --ext .ts",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "enquirer": "^2.4.1",
+    "execa": "^9.6.1",
+    "fs-extra": "^11.3.3",
+    "handlebars": "^4.7.8",
+    "ora": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@typescript-eslint/parser": "^8.53.1",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.1",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}
