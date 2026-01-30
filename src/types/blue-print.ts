@@ -1,5 +1,6 @@
 import { BluePrintData } from "./blue-print-data";
 import { ext, importStyle, language } from "./union-types";
+import path from "path";
 
 /**
  * Blueprint: The immutable project configuration that drives all generation.
@@ -195,7 +196,7 @@ export class BluePrint {
       );
     }
     //Rule 4: target path must be absolute
-    if (!this.data.targetPath.startsWith("/")) {
+    if (!path.isAbsolute(this.data.targetPath)) {
       throw new Error(
         `Invalid target path: "${this.data.targetPath}". Must be an absolute path.`,
       );

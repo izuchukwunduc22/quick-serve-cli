@@ -1,6 +1,11 @@
 import Handlebars from "handlebars";
 import fs from "fs-extra";
 import path from "path";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 /**
  * TemplateEngine: Centralised template loading, compilation, and rendering.
@@ -18,7 +23,7 @@ export class TemplateEngine {
   private readonly handlebars: typeof Handlebars;
 
   constructor(templatesRoot?: string) {
-    this.templatesRoot = templatesRoot || path.join(__dirname, "../templates");
+    this.templatesRoot = templatesRoot || join(__dirname, "../templates");
     this.handlebars = Handlebars.create();
     this.registerHelper();
   }

@@ -1,0 +1,64 @@
+{{!--
+.gitignore template for quick-serve-cli generated projects
+Design philosophy:
+-Start with sensible defaults(node_modules, .env, logs)
+-Add conditional ignores based on project configuration
+-Organize by category for clarity
+-Include comments to help users whats being ignored
+--}}
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.nyc_output/
+
+# Temp files
+*.tmp
+*.temp
+.cache/
+
+{{#if (or isTypeScript isJavaScript)}}
+
+# Build outputs
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+{{/if}}
+{{#if hasDatabase}}
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+{{/if}}
+{{#if (eq orm "prisma")}}
+*prisma/migrations/*
+!prisma/migrations/.gitkeep
+{{/if}}
+
+{{#if isTypeScript}}
+
+# Typescript
+dist/
+build/
+.tsbuildinfo
+{{/if}}
