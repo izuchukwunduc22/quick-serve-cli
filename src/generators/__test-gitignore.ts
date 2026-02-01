@@ -22,7 +22,7 @@ async function test() {
     importStyle: "esm",
     database: "postgres",
     orm: "prisma",
-    isPathAlias: false,
+
     targetPath: path.resolve(tempDir, "test1"),
   });
   const engine = new TemplateEngine();
@@ -50,7 +50,6 @@ async function test() {
     importStyle: "esm",
     database: "none",
     orm: "none",
-    isPathAlias: false,
     targetPath: path.resolve(tempDir, "test2"),
   });
   const gen2 = new GitignoreGenerator(blueprint2, engine);

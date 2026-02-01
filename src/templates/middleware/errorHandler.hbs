@@ -1,0 +1,43 @@
+{{!--
+  Error handler middleware
+  Purpose: Centralized error handling for Express apps
+  Usage: app.use(errorHandler); // Last middleware
+  Must have four params: err, req, res, next
+--}}
+
+{{#if isTypeScript}}
+import { Request, Response, NextFunction } from "express";
+
+interface ApiError extends Error {
+  status?: number;
+}
+
+export default function errorHandler(
+  err: ApiError,
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void {
+{{else}}
+export default function errorHandler(err, req, res, next) {
+{{/if}}
+  // Log error (replace with proper logger in prod)
+  console.error(err);
+
+  const status = err.status || 500;
+  const message =
+    status === 500
+      ? "Internal Server Error"
+      : err.message || "An error occurred";
+
+  res.status(status).json({
+    success: false,
+    status,
+    message,
+    {{#if isTypeScript}}
+    ...(process.env.NODE_ENV === "development" && err.stack
+      ? { stack: err.stack }
+      : {}),
+    {{/if}}
+  });
+}

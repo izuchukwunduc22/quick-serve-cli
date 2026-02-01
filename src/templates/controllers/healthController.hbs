@@ -1,0 +1,45 @@
+{{!--
+Health controller
+Purpose: Handle health check requests
+--}}
+
+{{#if isTypeScript}}
+import { Request, Response, NextFunction } from "express";
+
+/**
+* Gets server health status
+* @params req - Express request object
+* @params res - Express response object
+* @returns JSON response with health status
+*/
+
+export function getHealth(req: Request, res:Response):void
+{{else}}
+export function getHealth(req, res)
+{{/if}}
+{
+{{#if hasDatabase}}
+// Example:
+// try {
+    await db.query("SELECT 1");
+    return res.status(200).json({
+        status:"ok",
+        timestamp: new Date().toISOString(),
+        database:"connected",
+    });
+} catch (e) {
+    return res.status(503).json({
+        status:"error",
+        timestamp: new Date().toISOString(),
+        database: "disconnected",
+    });
+}
+{{/if}}
+    return res.status(200).json({
+        status:"ok",
+        timestamp: new Date().toISOString(),
+        {{#if hasDatabase}}
+        // database: "not_checked", //Uncomment when you add database check
+        {{/if}}
+    });
+}

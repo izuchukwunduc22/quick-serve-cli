@@ -1,0 +1,28 @@
+{{!--
+Health check route
+Purpose: Provides a simple endpoint to verify the server is running
+Endpoint: GET /health
+Response: {status:"ok", timestamp:"2026-02-01T3:01:00.000Z"}
+--}}
+
+
+{{#if isTypeScript}}
+import { Router } from "express";
+import { getHealth } from "@/controllers/getHealth{{#if isESM}}.js{{/if}}";
+
+const router = Router();
+{{else}}
+import express from "express";
+import { getHealth } from "../controllers/getHealth{{#if isESM}}.js{{/if}}";
+const router = express.Router();
+{{/if}}
+
+/**
+* GET /health
+* Returns server health status
+*/
+
+router.get("/", getHealth);
+
+export default router;
+
